@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Add this CSS to make the image fit inside the card */
+/* Add this CSS to make the image fit inside the card */
+.card-img-top {
+    width: 40%;
+    height: 270px; /* Adjust the height as needed */
+    object-fit:fill;
+  }
+  
+  /* Optional styling for the cards */
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Optional styling for the Remove button */
+  .btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  /* Optional styling for the Checkout button */
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Optional styling for the Update Address button */
+  .btn-warning {
+    background-color: #ffc107;
+    color: #000;
+  }
+  

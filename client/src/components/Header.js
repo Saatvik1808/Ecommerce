@@ -1,17 +1,24 @@
-import "../components/Header.css"
-import React from "react";
+import "../components/Header.css";
+import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../../src/context/auth";
 import toast from "react-hot-toast";
 import SearchInput from "./Form/SearchInput";
 import useCategory from "../hooks/useCategory.js";
-import { useCart } from ".././context/cart";
+import { useCart } from "../context/cart.js";
 import { Badge } from "antd";
+import { GiShoppingBag } from "react-icons/gi";
+
+
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
   const categories = useCategory();
+  const [navDropdownOpen, setNavDropdownOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false); // New state for mobile menu 
+
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -21,120 +28,122 @@ const Header = () => {
     localStorage.removeItem("auth");
     toast.success("Logout Successfully");
   };
+
+  const handleNavDropdownToggle = () => {
+    setNavDropdownOpen(!navDropdownOpen);
+  };
+
+  const handleUserDropdownToggle = () => {
+    setUserDropdownOpen(!userDropdownOpen);
+  };
+  const handleMobileMenuToggle = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
   return (
-    <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
+    <nav className="bg-body-tertiary bg-opacity-90 shadow-md font-sans" style={{ fontFamily: "'Josefin Sans', sans-serif" }}>
+      <div className="container mx-auto px-4 py-2 md:px-8">
+        <div className="flex items-center justify-between">
           <button
-            className="navbar-toggler"
+            className="lg:hidden text-2xl font-bold text-primary-500"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01"
-            aria-expanded="false"
+            onClick={handleNavDropdownToggle}
+            aria-expanded={navDropdownOpen}
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <Link to="/" className="navbar-brand">
-              🛒 Ecommerce App
-            </Link>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <SearchInput />
-              <li className="nav-item">
-                <NavLink to="/" className="nav-link ">
-                  Home
-                </NavLink>
-              </li>
-              <li className="nav-item dropdown">
-                <Link
-                  className="nav-link dropdown-toggle"
-                  to={"/categories"}
-                  data-bs-toggle="dropdown"
-                >
-                  Categories
-                </Link>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to={"/categories"}>
-                      All Categories
+          <Link to="/" className="text-3xl font-bold">
+         
+            <span className="text-primary-500" style={{ fontSize: "3rem" }}>P</span>risa.
+          </Link>
+          <div className={`lg:flex items-right ${navDropdownOpen ? "block" : "hidden"}`}>
+            <SearchInput
+              className="text-xs bg-transparent outline-none border rounded-full py-3 px-2 text-gray-700 placeholder-gray-300"
+              placeholder="Search"
+            />
+          </div>
+          <div className="hidden lg:flex items-center space-x-4">
+            <NavLink to="/" className="text-primary-500">
+              HOME
+            </NavLink>
+            <div className="relative inline-block text-left">
+              <Link
+                className="text-primary-500 cursor-pointer hover:text-primary-600"
+                to={"/categories"}
+                onClick={handleNavDropdownToggle}
+              >
+                CATEGORIES
+              </Link>
+              <ul
+                className={`dropdown-menu absolute z-10 mt-2 bg-white border border-primary-300 divide-y divide-primary-300 rounded-lg ${
+                  navDropdownOpen ? "block" : "hidden"
+                }`}
+              >
+                <li>
+                  <Link className="dropdown-item" to={"/categories"}>
+                    ALL CATEGORIES
+                  </Link>
+                </li>
+                {categories?.map((c) => (
+                  <li key={c.slug}>
+                    <Link className="dropdown-item" to={`/category/${c.slug}`}>
+                      {c.name}
                     </Link>
                   </li>
-                  {categories?.map((c) => (
-                    <li>
-                      <Link
-                        className="dropdown-item"
-                        to={`/category/${c.slug}`}
-                      >
-                        {c.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </li>
+                ))}
+              </ul>
+            </div>
 
-              {!auth?.user ? (
-                <>
-                  <li className="nav-item">
-                    <NavLink to="/register" className="nav-link">
-                      Register
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink to="/login" className="nav-link">
-                      Login
-                    </NavLink>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li className="nav-item dropdown">
+            {!auth?.user ? (
+              <>
+                <NavLink to="/register" className="text-primary-500">
+                  REGISTER
+                </NavLink>
+                <NavLink to="/login" className="text-primary-500">
+                  LOGIN
+                </NavLink>
+              </>
+            ) : (
+              <div className="relative inline-block text-left">
+                <NavLink
+                  className="text-primary-500 cursor-pointer hover:text-primary-600"
+                  role="button"
+                  onClick={handleUserDropdownToggle}
+                >
+                  {auth?.user?.name}
+                </NavLink>
+                <ul
+                  className={`dropdown-menu absolute z-10 mt-2 bg-white border border-primary-300 divide-y divide-primary-300 rounded-lg ${
+                    userDropdownOpen ? "block" : "hidden"
+                  }`}
+                >
+                  <li>
                     <NavLink
-                      className="nav-link dropdown-toggle"
-                      href="#"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      style={{ border: "none" }}
+                      to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
+                      className="dropdown-item"
                     >
-                      {auth?.user?.name}
+                      DASHBOARD
                     </NavLink>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <NavLink
-                          to={`/dashboard/${
-                            auth?.user?.role === 1 ? "admin" : "user"
-                          }`}
-                          className="dropdown-item"
-                        >
-                          Dashboard
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          onClick={handleLogout}
-                          to="/login"
-                          className="dropdown-item"
-                        >
-                          Logout
-                        </NavLink>
-                      </li>
-                    </ul>
                   </li>
-                </>
-              )}
-              <li className="nav-item">
-                <Badge count={cart?.length} showZero>
-                  <NavLink to="/cart" className="nav-link">
-                    Cart
-                  </NavLink>
-                </Badge>
-              </li>
-            </ul>
+                  <li>
+                    <NavLink onClick={handleLogout} to="/login" className="dropdown-item">
+                      LOGOUT
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
+            )}
+
+            {/* The Badge component must be imported and correctly implemented */}
+            <Badge count={cart?.length} showZero>
+              <NavLink to="/cart" className="text-primary-500 flex items-center">
+                <GiShoppingBag className="text-xl mr-2" /> {/* Cart Logo */}
+              </NavLink>
+            </Badge>
           </div>
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 };
 

@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Additional custom styles for the filter */
+.home-page .filter-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.home-page .filter-select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  background-color: #f7fafc;
+  color: #718096;
+  font-size: 14px;
+}
+
+.home-page .filter-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #4a5568;
+  border-radius: 5px;
+  background-color: #4a5568;
+  color: #fff;
+  font-size: 12px;
+}
+
+.home-page .filter-button:hover {
+  background-color: #2d3748;
+}
+
+/* Update the card styles */
+.home-page {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.home-page .card {
+  background-color: rgba(128, 128, 128, 0.097);
+  width: 17rem;
+  display: flex;
+}
+
+.home-page .card-name-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.home-page .card-price {
+  color: green;
+  font-weight: bold;
+}
+
+.home-page .card-text {
+  color: rgb(90, 89, 89);
+}
+
+.home-page .card-img-top {
+  height: 300px !important;
+  width:100% !important
+}
