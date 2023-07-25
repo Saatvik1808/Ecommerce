@@ -1,12 +1,16 @@
-import React from 'react'
+
+import "./Foot.css"
+import React from 'react';
 
 const Footer = () => {
   return (
-    <div className="footer">
-    <h1 className="text-center">All Right Reserved &copy; Saatvik</h1>
-    <p className="text-center mt-3"></p>
-  </div>
-  )
-}
+    <div className="footer bg-dark text-white py-3">
+      <div className="container text-center">
+        <h1 className="mb-0">All Rights Reserved &copy; Saatvik</h1>
+        <p className="mt-2">Your additional footer content can go here.</p>
+      </div>
+    </div>
+  );
+};
 
-export default Footer
+export default Footer;

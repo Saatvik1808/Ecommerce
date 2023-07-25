@@ -5,6 +5,7 @@ import CategoryForm from "../../components/Form/CategoryForm";
 import toast from "react-hot-toast";
 import axios from "axios";  
 import { Modal } from "antd";
+import "./Cat.css"
 const CreateCategory = () => {
     const [categories, setCategories] = useState([]);
     const [name, setName] = useState("");
@@ -105,8 +106,8 @@ const CreateCategory = () => {
                   setValue={setName}
                 />
               </div>
-              <div className="w-75">
-                <table className="table">
+              <div className="w-100 mt-4">
+                <table className="table table-bordered table-striped table-hover">
                   <thead>
                     <tr>
                       <th scope="col">Name</th>
@@ -115,10 +116,10 @@ const CreateCategory = () => {
                   </thead>
                   <tbody>
                     {categories?.map((c) => (
-                      <>
-                        <tr>
-                          <td key={c._id}>{c.name}</td>
-                          <td>
+                      <tr key={c._id}>
+                        <td>{c.name}</td>
+                        <td>
+                          <div className="d-flex">
                             <button
                               className="btn btn-primary ms-2"
                               onClick={() => {
@@ -137,9 +138,9 @@ const CreateCategory = () => {
                             >
                               Delete
                             </button>
-                          </td>
-                        </tr>
-                      </>
+                          </div>
+                        </td>
+                      </tr>
                     ))}
                   </tbody>
                 </table>
@@ -161,6 +162,5 @@ const CreateCategory = () => {
       </Layout>
     );
   };
-  
   
   export default CreateCategory;
