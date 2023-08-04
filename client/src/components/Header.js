@@ -54,7 +54,7 @@ const Header = () => {
           </button>
           <Link to="/" className="text-3xl font-bold">
          
-            <span className="text-primary-500" style={{ fontSize: "3rem" }}>P</span>risa.
+          <span className="text-primary-500 font-semibold" style={{ fontSize: "3rem" }}>P</span>risa.
           </Link>
           <div className={`lg:flex items-right ${navDropdownOpen ? "block" : "hidden"}`}>
             <SearchInput
