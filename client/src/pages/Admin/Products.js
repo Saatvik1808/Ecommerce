@@ -42,7 +42,7 @@ const Products = () => {
                 <div className="card shadow-md bg-white rounded-lg">
                   <img
                     src={`http://localhost:8081/api/v1/product/product-photo/${p._id}`}
-                    className="card-img-top h-40 w-full object-cover rounded-t-lg"
+                    className="card-img-top h-40 w-100  rounded-t-lg"
                     alt={p.name}
                   />
                   <div className="p-4">

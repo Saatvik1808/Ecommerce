@@ -123,7 +123,7 @@ const HomePage = () => {
 
   return (
     <Layout title={"All Products"}>
-      <div className="container-fluid row mt-3 home-page" style={{ fontFamily: "'Josefin Sans', sans-serif" }}>
+      <div className="container-fluid row mt-5 home-page" style={{ fontFamily: "'Josefin Sans', sans-serif" }}>
         <div className="col-md-3 filters">
           <div className="filter-box p-4 rounded shadow">
             <h4 className="text-center mb-4">Filter By Category</h4>

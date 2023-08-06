@@ -6,6 +6,7 @@ import Policy from "./pages/Policy";
 import Pagenotfound from "./pages/PagenotFound";
 import Register from "./pages/Auth/Register";
 import Login from "./pages/Auth/Login";
+import Land from "./pages/Landing"
 import PrivateRoute from "./components/Routes/Private"
 import Dashboard from "./pages/user/Dashboard";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
@@ -27,7 +28,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<Land />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/product/:slug" element={<ProductDetails />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/cart" element={<CartPage />} />

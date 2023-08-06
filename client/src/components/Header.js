@@ -9,15 +9,13 @@ import { useCart } from "../context/cart.js";
 import { Badge } from "antd";
 import { GiShoppingBag } from "react-icons/gi";
 
-
-
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
   const categories = useCategory();
   const [navDropdownOpen, setNavDropdownOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false); // New state for mobile menu 
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false); // New state for mobile menu
 
   const handleLogout = () => {
     setAuth({
@@ -40,7 +38,10 @@ const Header = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
   return (
-    <nav className="bg-body-tertiary bg-opacity-90 shadow-md font-sans" style={{ fontFamily: "'Josefin Sans', sans-serif" }}>
+    <nav
+
+  style={{ backgroundColor: "rgba(0, 0, 0, 0.9)", boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.2)", fontFamily: "'Josefin Sans', sans-serif" }}
+>
       <div className="container mx-auto px-4 py-2 md:px-8">
         <div className="flex items-center justify-between">
           <button
@@ -52,23 +53,32 @@ const Header = () => {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <Link to="/" className="text-3xl font-bold">
-         
-          <span className="text-primary-500 font-semibold" style={{ fontSize: "3rem" }}>P</span>risa.
+          <Link to="/" className="text-3xl font-bold text-white">
+            <span
+              className="text-primary-500 font-semibold"
+              style={{ fontSize: "3rem" }}
+            >
+              P
+            </span>
+            risa.
           </Link>
-          <div className={`lg:flex items-right ${navDropdownOpen ? "block" : "hidden"}`}>
+          <div
+            className={`lg:flex items-right ${
+              navDropdownOpen ? "block" : "hidden"
+            }`}
+          >
             <SearchInput
               className="text-xs bg-transparent outline-none border rounded-full py-3 px-2 text-gray-700 placeholder-gray-300"
               placeholder="Search"
             />
           </div>
           <div className="hidden lg:flex items-center space-x-4">
-            <NavLink to="/" className="text-primary-500">
+            <NavLink to="/" className="text-primary-500 text-white">
               HOME
             </NavLink>
             <div className="relative inline-block text-left">
               <Link
-                className="text-primary-500 cursor-pointer hover:text-primary-600"
+                className="text-primary-500 text-white cursor-pointer hover:text-primary-600"
                 to={"/categories"}
                 onClick={handleNavDropdownToggle}
               >
@@ -96,17 +106,17 @@ const Header = () => {
 
             {!auth?.user ? (
               <>
-                <NavLink to="/register" className="text-primary-500">
+                <NavLink to="/register" className="text-primary-500 text-white">
                   REGISTER
                 </NavLink>
-                <NavLink to="/login" className="text-primary-500">
+                <NavLink to="/login" className="text-primary-500 text-white">
                   LOGIN
                 </NavLink>
               </>
             ) : (
               <div className="relative inline-block text-left">
                 <NavLink
-                  className="text-primary-500 cursor-pointer hover:text-primary-600"
+                  className="text-primary-500 text-white cursor-pointer hover:text-primary-600"
                   role="button"
                   onClick={handleUserDropdownToggle}
                 >
@@ -119,14 +129,20 @@ const Header = () => {
                 >
                   <li>
                     <NavLink
-                      to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
+                      to={`/dashboard/${
+                        auth?.user?.role === 1 ? "admin" : "user"
+                      }`}
                       className="dropdown-item"
                     >
                       DASHBOARD
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink onClick={handleLogout} to="/login" className="dropdown-item">
+                    <NavLink
+                      onClick={handleLogout}
+                      to="/login"
+                      className="dropdown-item"
+                    >
                       LOGOUT
                     </NavLink>
                   </li>
@@ -136,7 +152,7 @@ const Header = () => {
 
             {/* The Badge component must be imported and correctly implemented */}
             <Badge count={cart?.length} showZero>
-              <NavLink to="/cart" className="text-primary-500 flex items-center">
+              <NavLink to="/cart" className="text-white flex items-center">
                 <GiShoppingBag className="text-xl mr-2" /> {/* Cart Logo */}
               </NavLink>
             </Badge>

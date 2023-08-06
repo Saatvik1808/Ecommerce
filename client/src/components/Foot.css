@@ -1,5 +1,5 @@
 .footer {
-  background-image: linear-gradient(135deg, rgba(173, 216, 230, 0.5) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: rgba(0, 0, 0, 0.9); /* Transparent black background */
   color: #fff;
   position: relative;
   bottom: 0;

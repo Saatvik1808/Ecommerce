@@ -22,12 +22,13 @@ app.use(morgan('dev'))
 app.use(express.static(path.join(__dirname,'./client/build')))
 //routes
 app.use("/api/v1/auth",authRoute)
-// rest api
-app.use('*',function(req,res){
-    res.sendFile(path.join(__dirname,'./client/build/index.html'));
-})
 app.use("/api/v1/category", categoryRoute);
 app.use("/api/v1/product", productRoutes);
+
+// rest api
+app.use('*', function(req, res) {
+    res.sendFile(path.join(__dirname, './client/build/index.html'));
+  });
 
 //port
 const PORT = process.env.PORT || 8081;

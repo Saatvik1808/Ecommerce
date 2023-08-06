@@ -1,0 +1,110 @@
+/* Landing.css */
+
+.landing-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 50px !important;
+  font-weight: bold !important;
+  padding-bottom: 20px;
+  background-image: url("https://img.freepik.com/free-photo/vivid-blurred-colorful-wallpaper-background_58702-3440.jpg?w=900&t=st=1691332109~exp=1691332709~hmac=d6c5305965dc345597a191b516812ba4a15b7020d9ab56d29e3b742a69223c7f");
+  background-size: cover;
+}
+
+.landing-content {
+  display: flex; /* Add display flex to center vertically */
+  flex-direction: column; /* Align text vertically */
+  align-items: flex-start; /* Align text to the left */
+  justify-content: center;
+  width: 38%; /* Adjust the width as needed */
+  padding: 2rem;
+}
+
+.typewriter-container .Typewriter__wrapper {
+  font-size: 2.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.landing-3d-model {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Adjust the button size if needed */
+
+
+
+
+/* CSS */
+.button-85 {
+  padding: 10px 1.5em; /* Adjust padding */
+  font-size: 30px; /* Adjust font size */
+  border: none;
+  outline: none;
+  margin-top: 50px;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
