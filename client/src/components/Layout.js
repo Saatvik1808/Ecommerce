@@ -28,7 +28,6 @@ Layout.defaultProps = {
   title: "PRISA.",
   description: "mern stack project",
   keywords: "mern,react,node,mongodb",
-  author: "Techinfoyt",
 };
 
 export default Layout;
